@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
@@ -15,6 +15,14 @@
 
     <!-- Custom styles for this template -->
     <link rel="stylesheet" media="screen" href="{{ url_for('static', filename='css/main.css') }}">
+
+    <style>
+     @media screen and (min-width: 0px) and (max-width: 720px) {
+          #facebook { display: none; }
+          .mobile-hide{ display: none; }
+        }
+
+    </style>
 </head>
 
 <body>

@@ -15,8 +15,8 @@
         <div class="col-2"><strong>Date</strong></div>
         <div class="col-2"><strong>Time</strong></div>
         <div class="col-2"><strong>Venue</strong></div>
-        <div class="col-2 desktop-only"><strong>Home Team</strong></div>
-        <div class="col-2 desktop-only"><strong>Away Team</strong></div>
+        <div class="col-2 mobile-hide"><strong>Home Team</strong></div>
+        <div class="col-2 mobile-hide"><strong>Away Team</strong></div>
         <div class="col-1"></div>
     </div>
     {% for game in games %}
@@ -24,8 +24,8 @@
         <div class="col-2">{{ game.date }}</div>
         <div class="col-2">{{ game.time }}</div>
         <div class="col-2">{{ game.venue }}</div>
-        <div class="col-2 desktop-only">{{ game.home_team }}</div>
-        <div class="col-2 desktop-only">{{ game.away_team }}</div>
+        <div class="col-2 mobile-hide">{{ game.home_team }}</div>
+        <div class="col-2 mobile-hide">{{ game.away_team }}</div>
         <div class="col-1">
             <a type="button" class="btn btn-success btn-sm" href="{{ url_for('attendance.view_game', game_id=game._id) }}">
                 Attendance
