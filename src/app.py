@@ -25,7 +25,7 @@ def init_db():
 @app.route('/')
 def home():
     Game.update_games()
-    # Player.update_players()
+    Player.update_players()
     # Attendance.build_first()
     # return render_template('base.html')
     games = Game.get_games()
