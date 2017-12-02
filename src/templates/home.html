@@ -3,7 +3,7 @@
 
 <div class="container">
     <div class="row justify-content-center">
-    <img src="{{ url_for('static', filename='images/rolling_rock_logo.gif') }}" style="max-width:200px; max-height:200px; margin-top: -7px; margin-bottom: 10px">
+    <img src="{{ url_for('static', filename='images/Rolling_Rock_logo.gif') }}" style="max-width:200px; max-height:200px; margin-top: -7px; margin-bottom: 10px">
     </div>
     <hr>
     <div class="row">
@@ -15,8 +15,8 @@
         <div class="col-2"><strong>Date</strong></div>
         <div class="col-2"><strong>Time</strong></div>
         <div class="col-2"><strong>Venue</strong></div>
-        <div class="col-2"><strong>Home Team</strong></div>
-        <div class="col-2"><strong>Away Team</strong></div>
+        <div class="col-2 desktop-only"><strong>Home Team</strong></div>
+        <div class="col-2 desktop-only"><strong>Away Team</strong></div>
         <div class="col-1"></div>
     </div>
     {% for game in games %}
@@ -24,8 +24,8 @@
         <div class="col-2">{{ game.date }}</div>
         <div class="col-2">{{ game.time }}</div>
         <div class="col-2">{{ game.venue }}</div>
-        <div class="col-2">{{ game.home_team }}</div>
-        <div class="col-2">{{ game.away_team }}</div>
+        <div class="col-2 desktop-only">{{ game.home_team }}</div>
+        <div class="col-2 desktop-only">{{ game.away_team }}</div>
         <div class="col-1">
             <a type="button" class="btn btn-success btn-sm" href="{{ url_for('attendance.view_game', game_id=game._id) }}">
                 Attendance
