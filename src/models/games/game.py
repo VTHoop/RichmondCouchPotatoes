@@ -64,6 +64,7 @@ class Game(object):
             if game is None:
                 Game(date, time, venue, home_team, away_team, slice_id).save_to_mongo()
             else:
+                game = Game.get_game_by_id(slice_id)
                 game.date = date
                 game.home_team = home_team
                 game.away_team = away_team
