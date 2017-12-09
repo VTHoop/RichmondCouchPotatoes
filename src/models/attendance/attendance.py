@@ -25,10 +25,14 @@ class Attendance(object):
     def json(self):
         return {
             "game": self.game._id,
-            "player": self.player._id,
+            "player": self.player.json(),
             "attendance": self.attendance,
             "_id": self._id
         }
+
+    @classmethod
+    def get_all_attendance(cls):
+        return [cls(**elem) for elem in Database.find(AttendanceCosntants.COLLECTION, {})]
 
     @classmethod
     def get_attendance_by_game(cls, game):

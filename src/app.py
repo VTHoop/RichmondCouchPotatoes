@@ -29,6 +29,9 @@ def home():
     # Attendance.build_first()
     # return render_template('base.html')
     games = Game.get_games()
+    attendance = Attendance.get_all_attendance()
+    for a in attendance:
+        a.save_to_mongo()
 
     return render_template('home.html', games=games)
 
