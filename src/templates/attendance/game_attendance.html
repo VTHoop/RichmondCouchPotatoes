@@ -30,14 +30,14 @@
         </div>
         <div class="row header justify-content-center text-center " >
             <div class="col-1 col-md-1"><strong>Number</strong></div>
-            <div class="col-4 col-md-3"><strong>Name</strong></div>
+            <div class="col-5 col-md-3"><strong>Name</strong></div>
             <div class="col-4 col-md-2"><strong>Yes/No</strong></div>
-            <div class="col-2 col-md-1"><strong>Beers?</strong></div>
+            <div class="col-1 col-md-1"><strong>Beers?</strong></div>
         </div>
         {% for a in attendance %}
         <div class="row detail text-center justify-content-center">
             <div class="col-2 col-md-1">{{ a.player.number }}</div>
-            <div class="col-6 col-md-3">{{ a.player.name }}</div>
+            <div class="col-5 col-md-3">{{ a.player.name }}</div>
             <div class="col-4 col-md-2">
                 <div class="btn-group" data-toggle="buttons">
                     <label class="btn btn-primary {% if a.attendance == 'Yes' %}active{% endif %}">
@@ -58,7 +58,7 @@
                     </label>
                 </div>
             </div>
-            <div class="col-2 col-md-1 form-check">
+            <div class="col-1 col-md-1 form-check">
                 <label class="form-check-label">
                     {% if a.beverages == 'Yes' %}
                     <input class="form-check-input" type="radio" name="beverages" id="beverages{{ a._id }}"
