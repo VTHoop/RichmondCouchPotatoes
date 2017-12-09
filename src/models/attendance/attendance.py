@@ -8,7 +8,7 @@ __author__ = 'hooper-p'
 
 import uuid
 
-import src.models.attendance.constants as AttendanceCosntants
+import src.models.attendance.constants as AttendanceConstants
 
 
 class Attendance(object):
@@ -22,7 +22,7 @@ class Attendance(object):
         return "{} says {} to game on {}".format(self.player.name, self.attendance, self.game.date)
 
     def save_to_mongo(self):
-        Database.update(AttendanceCosntants.COLLECTION, {"_id": self._id}, self.json())
+        Database.update(AttendanceConstants.COLLECTION, {"_id": self._id}, self.json())
 
     def json(self):
         return {
@@ -34,22 +34,22 @@ class Attendance(object):
 
     @classmethod
     def get_all_attendance(cls):
-        return [cls(**elem) for elem in Database.find(AttendanceCosntants.COLLECTION, {})]
+        return [cls(**elem) for elem in Database.find(AttendanceConstants.COLLECTION, {})]
 
     @classmethod
     def get_attendance_by_game(cls, game):
-        all_players = [cls(**elem) for elem in Database.find_and_sort(AttendanceCosntants.COLLECTION, {"game": game},
-                                       [("player.number", 1),("player.name", 1)])]
+        all_players = [cls(**elem) for elem in Database.find_and_sort(AttendanceConstants.COLLECTION, {"game": game},
+                                                                      [("attendance", -1), ("player.number", 1),
+                                                                       ("player.name", 1)])]
         for player in all_players[:]:
             if player.player.name in PlayerConstants.players_to_remove:
                 all_players.remove(player)
         return all_players
 
-
     @classmethod
     def yes_attendance_by_game(cls, game):
         return [cls(**elem) for elem in
-                Database.find(AttendanceCosntants.COLLECTION, {"game": game, "attendance": "Yes"})]
+                Database.find(AttendanceConstants.COLLECTION, {"game": game, "attendance": "Yes"})]
 
     @staticmethod
     def build_first():
