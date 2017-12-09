@@ -13,6 +13,10 @@ def view_game(game_id):
         attendance = Attendance.get_attendance_by_game(game_id)
         for a in attendance:
             a.attendance = request.form['attendance' + str(a._id)]
+            if a._id == request.form['beverages']:
+                a.beverages = 'Yes'
+            else:
+                a.beverages = 'No'
             a.save_to_mongo()
 
     attendance = Attendance.get_attendance_by_game(game_id)

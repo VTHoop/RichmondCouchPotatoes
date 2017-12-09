@@ -12,10 +12,11 @@ import src.models.attendance.constants as AttendanceConstants
 
 
 class Attendance(object):
-    def __init__(self, game, player, attendance='No', _id=None):
+    def __init__(self, game, player, attendance='No', beverages='No', _id=None):
         self.game = Game.get_game_by_id(game)
         self.player = Player.get_player_by_id(player['_id'])
         self.attendance = attendance
+        self.beverages = beverages
         self._id = uuid.uuid4().hex if _id is None else _id
 
     def __repr__(self):
@@ -29,6 +30,7 @@ class Attendance(object):
             "game": self.game._id,
             "player": self.player.json(),
             "attendance": self.attendance,
+            "beverages": self.beverages,
             "_id": self._id
         }
 
