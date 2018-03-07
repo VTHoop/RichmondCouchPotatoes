@@ -34,7 +34,7 @@
             <div class="col-4 col-md-2"><strong>Yes/No</strong></div>
             <div class="col-1 col-md-1"><strong>Beers?</strong></div>
         </div>
-        <input type="radio" name="beverages" value="None" style="opacity: 0;"checked>
+        <input type="radio" name="beverages" value="None" style="opacity: 0;" checked>
         {% for a in attendance %}
         <div class="row detail text-center justify-content-center">
             <div class="col-2 col-md-1">{{ a.player.number }}</div>
@@ -47,6 +47,14 @@
                                checked>Yes
                         {% else %}
                         <input type="radio" name="attendance{{ a._id }}" id="yes" value="Yes" autocomplete="off">Yes
+                        {% endif %}
+                    </label>
+                    <label class="btn btn-primary {% if a.attendance == 'Und' %}active{% endif %}">
+                        {% if a.attendance == 'Und' %}
+                        <input type="radio" name="attendance{{ a._id }}" id="und" value="Und" autocomplete="off"
+                               checked>--
+                        {% else %}
+                        <input type="radio" name="attendance{{ a._id }}" id="und" value="Und" autocomplete="off">--
                         {% endif %}
                     </label>
                     <label class="btn btn-primary {% if a.attendance == 'No' %}active{% endif %}">
