@@ -1,11 +1,9 @@
 from src.common.database import Database
-from src.models.attendance.attendance import Attendance
+
 
 __author__ = 'hooper-p'
 
 import uuid
-from bs4 import BeautifulSoup
-import requests
 
 import src.models.games.constants as GameConstants
 
@@ -34,46 +32,6 @@ class Game(object):
             "away_team": self.away_team,
             "_id": self._id
         }
-
-    @staticmethod
-    def update_games():
-        # this is used to find the id within the href of the time element on the schedule
-        find_str = 'games'
-
-        link = "https://richmondskating.ezleagues.ezfacility.com/teams/2079371/Coach-Potatoes.aspx"
-        request = requests.get(link)
-        content = request.content
-
-        soup = BeautifulSoup(content, "html.parser")
-
-        schedule = soup.find("table", {"id": "ctl00_C_Schedule1_GridView1"})
-
-        schedule_rows = schedule.find_all("tr", {"class": ["RowStyle", "AlternateRowStyle"]})
-
-        for sr in schedule_rows:
-            game_info = sr.find_all("td")
-            date = game_info[0].a.text
-            home_team = game_info[1].a.text
-            away_team = game_info[3].a.text
-            time = game_info[4].a.text
-            venue = game_info[5].a.text
-            id = game_info[4].a['href']
-
-            # 8 digit number after "games/" is used as id for game
-            slice_id = id[id.find(find_str)+6:id.find(find_str)+14]
-            game = Database.find_one(GameConstants.COLLECTION, {"_id": slice_id})
-            if game is None:
-                new_game = Game(date, time, venue, home_team, away_team, slice_id)
-                new_game.save_to_mongo()
-                Attendance.build_for_new_game(new_game._id)
-            else:
-                game = Game.get_game_by_id(slice_id)
-                game.date = date
-                game.home_team = home_team
-                game.away_team = away_team
-                game.time = time
-                game.venue = venue
-                game.save_to_mongo()
 
     @classmethod
     def get_game_by_id(cls, _id):

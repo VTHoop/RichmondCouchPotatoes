@@ -5,7 +5,7 @@ __author__ = 'hooper-p'
 from flask import Flask, render_template
 from src.common.database import Database
 
-from src.models.players.player import Player
+
 from src.models.games.game import Game
 
 from src.models.attendance.views import attendance_blueprint
@@ -24,7 +24,7 @@ def init_db():
 
 @app.route('/')
 def home():
-    Game.update_games()
+    Attendance.update_games()
     # Player.update_players()
     # Attendance.build_first()
     # return render_template('base.html')
