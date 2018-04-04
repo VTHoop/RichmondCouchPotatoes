@@ -60,3 +60,11 @@ class Attendance(object):
         for game in games:
             for player in players:
                 Attendance(game._id, player._id).save_to_mongo()
+
+    @staticmethod
+    def build_for_new_game(game):
+        players = Player.get_players()
+        games = Game.get_game_by_id(game)
+        for game in games:
+            for player in players:
+                Attendance(game._id, player._id).save_to_mongo()

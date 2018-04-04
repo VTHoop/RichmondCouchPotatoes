@@ -1,4 +1,5 @@
 from src.common.database import Database
+from src.models.attendance.attendance import Attendance
 
 __author__ = 'hooper-p'
 
@@ -62,7 +63,9 @@ class Game(object):
             slice_id = id[id.find(find_str)+6:id.find(find_str)+14]
             game = Database.find_one(GameConstants.COLLECTION, {"_id": slice_id})
             if game is None:
-                Game(date, time, venue, home_team, away_team, slice_id).save_to_mongo()
+                new_game = Game(date, time, venue, home_team, away_team, slice_id)
+                new_game.save_to_mongo()
+                Attendance.build_for_new_game(new_game._id)
             else:
                 game = Game.get_game_by_id(slice_id)
                 game.date = date
