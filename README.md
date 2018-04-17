@@ -1,5 +1,7 @@
 # RichmondCouchPotatoes
 
+http://richmond-couch-potatoes.herokuapp.com/
+
 ### Summary
 This web application scrapes the HNIR.net website specifically for the recreational hockey team, the Richmond Couch Potatoes, with its main purpose to set and display the attedance for each game.
 
