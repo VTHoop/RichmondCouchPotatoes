@@ -76,7 +76,7 @@ class Attendance(object):
         # this is used to find the id within the href of the time element on the schedule
         find_str = 'games'
 
-        link = "https://richmondskating.ezleagues.ezfacility.com/teams/2079371/Coach-Potatoes.aspx"
+        link = "https://richmondskating.ezleagues.ezfacility.com/teams/2200008/Coach-Potatoes.aspx"
         request = requests.get(link)
         content = request.content
 

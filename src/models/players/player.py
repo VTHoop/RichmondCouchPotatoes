@@ -29,7 +29,7 @@ class Player(object):
 
     @staticmethod
     def update_players():
-        link = "https://richmondskating.ezleagues.ezfacility.com/teams/2079371/Coach-Potatoes.aspx"
+        link = "https://richmondskating.ezleagues.ezfacility.com/teams/2200008/Coach-Potatoes.aspx"
         request = requests.get(link)
         content = request.content
 

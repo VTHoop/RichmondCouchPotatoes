@@ -1,4 +1,5 @@
 from src.models.attendance.attendance import Attendance
+from src.models.players.player import Player
 
 __author__ = 'hooper-p'
 
@@ -24,8 +25,8 @@ def init_db():
 
 @app.route('/')
 def home():
-    Attendance.update_games()
-    # Player.update_players()
+    Player.update_players()
+    # Attendance.update_games()
     # Attendance.build_first()
     # return render_template('base.html')
     games = Game.get_games()
