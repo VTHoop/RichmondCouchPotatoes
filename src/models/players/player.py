@@ -45,6 +45,10 @@ class Player(object):
             number = player_info[2].text
             Player(name, number).save_to_mongo()
 
+        for pta in PlayerConstants.players_to_add:
+            Player(pta, '').save_to_mongo()
+
+
     @classmethod
     def get_player_by_id(cls, _id):
         return cls(**Database.find_one(PlayerConstants.COLLECTION, {"_id": _id}))
